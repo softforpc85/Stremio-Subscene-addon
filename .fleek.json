@@ -1,0 +1,11 @@
+{
+    "build": {
+      "image": "node:alpine",
+      "command": "build.bat && echo $SOME_ENV",
+      "publicDir": "dist",
+      "baseDir": "vue",
+      "environment": {
+        "SOME_ENV": "Build finished!"
+      }
+    }
+   }
