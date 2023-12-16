@@ -2,7 +2,7 @@
 *.log
 /res
 /data
-/node_modules - Copy
+/node_modules
 /beamup.json
 /test.js
 /package-lock.json
