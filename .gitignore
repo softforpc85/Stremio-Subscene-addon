@@ -2,8 +2,8 @@
 *.log
 /res
 /data
+!/node_modules/sub2vtt
 /node_modules
-!node_modules/sub2vtt
 /beamup.json
 /test.js
 /package-lock.json
