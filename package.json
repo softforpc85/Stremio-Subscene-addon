@@ -17,6 +17,7 @@
 		"node-cache": "^5.1.2",
 		"node-html-parser": "^6.1.1",
 		"slugify": "^1.6.5",
+		"sub2vtt": "/node_modules/sub2vtt",
 		"swagger-stats": "^0.99.5"
 	},
 	"devDependencies": {
