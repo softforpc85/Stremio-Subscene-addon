@@ -1,4 +1,4 @@
-var env = process.env.NODE_ENV ? 'render':'local';
+var env = process.env.NODE_ENV ? 'vercel':'local';
 
 var config = {
     BaseURL: "https://subscene.com",
@@ -12,9 +12,9 @@ var config = {
 }
 
 switch (env) {
-    case 'render':
+    case 'vercel':
 		config.port = process.env.PORT || 63555
-        config.local = process.env.PRE_URL || "https://stremioaddon-q45r.onrender.com";
+        config.local = process.env.PRE_URL || "stremio-subscene-addon-softforpc85s-projects.vercel.app";
         break;
 
     case 'local':
