@@ -1,4 +1,4 @@
-var env = process.env.NODE_ENV ? 'beamup':'local';
+var env = process.env.NODE_ENV ? 'render':'local';
 
 var config = {
     BaseURL: "https://subscene.com",
@@ -12,9 +12,9 @@ var config = {
 }
 
 switch (env) {
-    case 'beamup':
+    case 'render':
 		config.port = process.env.PORT || 63555
-        config.local = process.env.PRE_URL || "https://2ecbbd610840-subscene.baby-beamup.club";
+        config.local = process.env.PRE_URL || "https://stremioaddon-q45r.onrender.com/";
         break;
 
     case 'local':
