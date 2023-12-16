@@ -259,6 +259,7 @@ function generateInstallUrl() {
        const configuration = state.Language.id && state.Language.name ? '/' + state.Language.id : '';
        const location = window.location.host + configuration + '/manifest.json'
        document.getElementById("install_button").href = 'stremio://' + location; 
+       alert(location);
     console.log('location',location);
 }
 
