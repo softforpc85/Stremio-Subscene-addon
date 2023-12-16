@@ -14,7 +14,7 @@ var config = {
 switch (env) {
     case 'vercel':
 		config.port = process.env.PORT || 63555
-        config.local = process.env.PRE_URL || "stremio-subscene-addon-softforpc85s-projects.vercel.app";
+        config.local = process.env.PRE_URL || "stremio-subscene-addon.vercel.app";
         break;
 
     case 'local':
