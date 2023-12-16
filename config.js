@@ -14,7 +14,7 @@ var config = {
 switch (env) {
     case 'render':
 		config.port = process.env.PORT || 63555
-        config.local = process.env.PRE_URL || "https://stremioaddon-q45r.onrender.com/";
+        config.local = process.env.PRE_URL || "https://stremioaddon-q45r.onrender.com";
         break;
 
     case 'local':
