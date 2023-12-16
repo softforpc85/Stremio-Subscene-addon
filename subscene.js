@@ -199,14 +199,15 @@ async function getsubtitles(moviePath, id, lang, episode, year) {
           simpleTitle = simpleTitle.replace(regEx,"")
         })
         simpleTitle = simpleTitle.replace(/\W/gi,"") // kasih gambaran di stremio
-        //let proxy =  {responseType: "buffer"};
+        let proxy =  {responseType: "buffer"};
+        let type =  "Test";
         if (value) {
             let path = config.BaseURL + value.path; //PATH : trang subscene co chua link down sub
             //console.log("PATH ? : ", path)
             if (episode) {
-              url = config.local+"/sub.vtt?"+"episode="+episodeText+"&"+sub2vtt.gerenateUrl(path);
+              url = config.local+"/sub.vtt?"+"episode="+episodeText+"&"+sub2vtt.gerenateUrl(path,proxy,type);
             } else {
-              url = config.local+"/sub.vtt?"+sub2vtt.gerenateUrl(path);
+              url = config.local+"/sub.vtt?"+sub2vtt.gerenateUrl(path,proxy,type);
             }
             console.log("URL ? : ", url)
             //Dua sub len phim dang xem, fix loi cached
