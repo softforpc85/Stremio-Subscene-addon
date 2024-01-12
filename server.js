@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 require('dotenv').config()
-const app = require('./api/index.js')
+const app = require('./index.js')
 const config = require('./config.js');
 
 // create local server
