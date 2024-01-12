@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const path = require('path');
-const { subtitles, downloadUrl } = require('./subscene');
-const manifest = require("./manifest.json");
-const {CacheControl} = require('./config');
-const languages = require('./languages.json');
+const { subtitles, downloadUrl } = require('../subscene');
+const manifest = require("../manifest.json");
+const {CacheControl} = require('../config');
+const languages = require('../languages.json');
 
 const swStats = require('swagger-stats')
 
@@ -37,11 +37,11 @@ app.use((req, res, next) => {
 
 app.set('trust proxy', true)
 
-app.use('/configure', express.static(path.join(__dirname, 'vue', 'dist')));
-app.use('/assets', express.static(path.join(__dirname, 'vue', 'dist', 'assets')));
+app.use('/configure', express.static(path.join(__dirname, '..', 'vue', 'dist')));
+app.use('/assets', express.static(path.join(__dirname, '..','vue', 'dist', 'assets')));
+//app.use(express.static('public'))
 
 app.use(cors())
-
 
 app.get('/', (_, res) => {
 	res.redirect('/configure')
@@ -51,6 +51,8 @@ app.get('/', (_, res) => {
 app.get('/:configuration?/configure', (req, res) => {
 	res.setHeader('Cache-Control', CacheControl.oneDay);
 	res.setHeader('content-type', 'text/html');
+
+	console.log(path.join(__dirname, 'vue', 'dist', 'index.html'))
 	res.sendFile(path.join(__dirname, 'vue', 'dist', 'index.html'));
 });
 
