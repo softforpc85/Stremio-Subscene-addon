@@ -13,12 +13,12 @@ var config = {
 
 switch (env) {
     case 'vercel':
-		config.port = process.env.PORT || 63555
-        config.local = process.env.PRE_URL || "myaddon.ap-1.evennode.com";
+		config.port = process.env.PORT || 10885
+        config.local = process.env.PRE_URL || "stremio-subscene-addon.vercel.app";
         break;
 
     case 'local':
-		config.port = 63555
+		config.port = 10885
         config.local = "http://127.0.0.1:" + config.port;
         break;
 }

@@ -13,16 +13,17 @@ const { forEach } = require('sub2vtt/ISO639');
 const Cache = new NodeCache({ stdTTL: (0.5 * 10 * 60), checkperiod: (10 * 1 * 60) }); // chứa link sub
 const MetaCache = new NodeCache({ stdTTL: (0.5 * 10 * 60), checkperiod: (10 * 1 * 60) });
 const KitsuCache = new NodeCache({ stdTTL: (0.5 * 10 * 60), checkperiod: (10 * 1 * 60) });
-const filesCache =  new NodeCache({ stdTTL: (0.5 * 10 * 60), checkperiod: (10 * 1 * 60) });
+const filesCache =  new NodeCache({ stdTTL: (0.5 * 10 * 60), checkperiod: (10 * 1 * 60) }); //chứa file sub
 const subsceneCache = new NodeCache({ stdTTL: (0.5 * 10 * 60), checkperiod: (10 * 1 * 60) });
 const searchCache = new NodeCache({ stdTTL: (0.5 * 60 * 60), checkperiod: (1 * 60 * 60) });
+
 
 async function subtitles(type, id, lang) {
     if (id.match(/tt[0-9]/)){
 		return await (TMDB(type, id, lang)) 
 	}	if (id.match(/kitsu:[0-9]/)){
         return await (Kitsu(type, id, lang)) 
-		console.log(type, id, lang)
+		//console.log(type, id, lang)
 	}
 }
 async function Kitsu(type, id, lang) {
@@ -77,17 +78,6 @@ async function TMDB(type, id, lang) {
     if (type == "movie") {
       let moviePath = `/subtitles/${meta.slug}`;
       //console.log(moviePath);
-      /* Bo sung search
-      const searchID = metaid;
-      let search = searchCache.get(searchID);
-      if (!search) {
-        search = await subscene.search(`${meta.title}`);
-        if (search) {
-          searchCache.set(searchID, search);
-        }
-      }
-      let moviePath = search[0].path;
-      */
       return getsubtitles(moviePath, id, lang, null, meta.year)
     }
     else if (type == "series") {
@@ -131,6 +121,7 @@ async function TMDB(type, id, lang) {
 
 
 async function getsubtitles(moviePath, id, lang, episode, year) {
+
   let breakTitle = moviePath.match(/[a-z]+/gi)
   //console.log("breakTitle : " , breakTitle)
   console.log(moviePath, id, lang, year, episode)
@@ -159,7 +150,7 @@ async function getsubtitles(moviePath, id, lang, episode, year) {
       }
     }
     console.log('subtitles', Object.keys(subtitles).length)
-    console.log('subtitles', moviePath)
+    console.log('moviePath', moviePath)
     if (subtitles[lang]) {
       subtitles = subtitles[lang];
       console.log('subtitles matched lang : ',subtitles.length)
@@ -191,7 +182,7 @@ async function getsubtitles(moviePath, id, lang, episode, year) {
       }
       console.log("filtered subs ", subtitles.length)
 
-      for (let i = 0; i < (subtitles.length > 6 ? 6 : subtitles.length); i++) {
+      for (let i = 0; i < (subtitles.length > subtitles.length); i++) {
         let value = subtitles[i];
         let simpleTitle = subtitles[i].title;
         breakTitle.forEach(el => {
@@ -215,7 +206,7 @@ async function getsubtitles(moviePath, id, lang, episode, year) {
                 lang: languages[lang].iso || languages[lang].id,
                 //id: "subscn_"+episode?`${cachID}_ep${episode}_${i}`:`${cachID}_${i}`,
                 title:subtitles[i].title,
-                id: "s."+`${i}`+".E"+`${episodeText}`+ simpleTitle,
+                id: "s."+`${i}`+"."+`${episodeText}`+ simpleTitle,
                 url: url
             });
         }
@@ -239,7 +230,7 @@ console.log("Doc file cached : ", cached)
 } else {
 return subscene.downloadUrl(path).then(url => {
     let cached = filesCache.set(cachID, url);
-    console.log("Caching File", cached)
+    console.log("Caching File URL :", url)
     return url;
 }).catch(error => { console.log(error) });
 }
