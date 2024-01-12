@@ -52,8 +52,8 @@ app.get('/:configuration?/configure', (req, res) => {
 	res.setHeader('Cache-Control', CacheControl.oneDay);
 	res.setHeader('content-type', 'text/html');
 
-	console.log(path.join(__dirname, 'vue', 'dist', 'index.html'))
-	res.sendFile(path.join(__dirname, 'vue', 'dist', 'index.html'));
+	console.log(path.join(__dirname, '..', 'vue', 'dist', 'index.html'))
+	res.sendFile(path.join(__dirname, '..', 'vue', 'dist', 'index.html'));
 });
 
 app.get('/manifest.json', (_, res) => {
